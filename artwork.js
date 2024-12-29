@@ -59,7 +59,7 @@ function renderText() {
   textAlign(CENTER, CENTER);
 
   push();
-  fill(random(palette));
+  //fill(random(palette));
   const bounds = pragmatica.textBounds(
     params.text,
     0,
@@ -68,7 +68,7 @@ function renderText() {
   );
   rectMode(CENTER);
   rect(0, 0, bounds.w * 1.4, bounds.h * 2.5); // Slightly larger than the text
-  fill(255);
+  fill(72, 173, 255);
   text(params.text, 0, 0);
   pop();
 }
@@ -86,14 +86,21 @@ function renderTextGrid() {
 
   for (let i = 0; i < params.gridSize; i++) {
     for (let j = 0; j < params.gridSize; j++) {
-      push();
-
       // Calculate oscillation offset for X-axis with phase shift based on Y-axis
       const oscillation = sin(time + i * frequency + j * 0.5) * amplitude;
 
-      // Apply xGap and yGap to the grid positioning
-      translate(i * (xOffset + xGap) + oscillation, j * (yOffset + yGap));
+      // Calculate global position of each text element
+      const posX = i * (xOffset + xGap) + oscillation;
+      const posY = j * (yOffset + yGap);
 
+      // Draw a white line from the center to the text element
+      stroke(255); // Set line color to white
+      strokeWeight(5); // Set line thickness
+      line(width / 2, height, posX, posY);
+
+      // Render text at the calculated position
+      push();
+      translate(posX, posY);
       renderText();
       pop();
     }
@@ -102,7 +109,7 @@ function renderTextGrid() {
 
 function draw() {
   if (params.showBackground) {
-    background("#ffffff");
+    background(244, 244, 245, 255);
   }
   renderTextGrid();
 }
