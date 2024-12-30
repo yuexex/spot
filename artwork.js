@@ -33,7 +33,7 @@ p5.initMetrics(16, 300);
 
 function setup() {
   frameRate(10);
-  createCanvas(mmpx(200), mmpx(300), {
+  createCanvas(mmpx(320), mmpx(180), {
     guiOpen: true,
     guiPosition: "right",
     loop: true,
@@ -54,12 +54,12 @@ function setup() {
 
 function renderText() {
   noStroke();
-  fill(255);
+  fill(random(palette));
   textSize(mmpx(params.fontSize / 8));
   textAlign(CENTER, CENTER);
 
   push();
-  fill(random(palette));
+  //fill(random(palette));
   const bounds = pragmatica.textBounds(
     params.text,
     0,
@@ -68,7 +68,7 @@ function renderText() {
   );
   rectMode(CENTER);
   rect(0, 0, bounds.w * 1.4, bounds.h * 2.5); // Slightly larger than the text
-  fill(72, 173, 255);
+  fill(255);
   text(params.text, 0, 0);
   pop();
 }
@@ -94,9 +94,9 @@ function renderTextGrid() {
       const posY = j * (yOffset + yGap);
 
       // Draw a white line from the center to the text element
-      stroke(255,0); // Set line color to white
+      stroke(255, 0); // Set line color to white
       strokeWeight(5); // Set line thickness
-      line(width / 2, height, posX, posY);
+      line(width / 2, height / 2, posX, posY);
 
       // Render text at the calculated position
       push();
