@@ -59,7 +59,7 @@ function renderText() {
   textAlign(CENTER, CENTER);
 
   push();
-  //fill(random(palette));
+  fill(random(palette));
   const bounds = pragmatica.textBounds(
     params.text,
     0,
@@ -94,7 +94,7 @@ function renderTextGrid() {
       const posY = j * (yOffset + yGap);
 
       // Draw a white line from the center to the text element
-      stroke(255); // Set line color to white
+      stroke(255,0); // Set line color to white
       strokeWeight(5); // Set line thickness
       line(width / 2, height, posX, posY);
 
